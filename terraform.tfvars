@@ -1,1 +1,1 @@
-bucket_name = "Avibucket-28062026"
+bucket_name = "avibucket-28062026"

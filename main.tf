@@ -39,12 +39,19 @@ resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
     {
       "Sid": "Allowcloudfront",
       "Effect": "Allow",
-      "Principal": "cloudfront.amazonaws.com",
+      "Principal": {
+        "Service" :"cloudfront.amazonaws.com"
+      },
       "Action": [
         "s3:GetObject",
-        "s3:ListBucket"
+        "s3:ListObject"
       ],
-      "Resource": "${aws_s3_bucket.bucket.arn}/*"
+      "Resource": "${aws_s3_bucket.bucket.arn}/*",
+        "Condition" : {
+        "StringEquals" : {
+          "AWS:SourceArn" : aws_cloudfront_distribution.s3_distribution.arn
+        }
+      }
     }
   ]
 })
