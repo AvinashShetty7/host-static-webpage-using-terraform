@@ -1,0 +1,1 @@
+bucket_name = "Avibucket-28062026"
